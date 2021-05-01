@@ -67,7 +67,7 @@ test('setSession should return no error', async () => {
   })
   expect(error).toBeNull()
   expect(session).not.toBeNull()
-  await authWithSession.setSession(session!.refresh_token)
+  await authWithSession.setSession(session!.refresh_token!)
   const { user } = await authWithSession.update({ data: { hello: 'hello world' } })
   expect(user!.user_metadata).toBe({ hello: 'hello world' })
 })
