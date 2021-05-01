@@ -69,7 +69,19 @@ test('setSession should return no error', async () => {
   expect(session).not.toBeNull()
   await authWithSession.setSession(session?.refresh_token!)
   const { user } = await authWithSession.update({ data: { hello: 'world' } })
-  expect(user!.user_metadata).toStrictEqual({ hello: 'world' })
+  expect(user?.user_metadata).toStrictEqual({ hello: 'world' })
+})
+
+test('setUser should update user in session', async () => {
+  const authSession = new GoTrueClient({
+    url: GOTRUE_URL,
+    autoRefreshToken: false,
+    persistSession: false,
+  })
+  const session = authWithSession.session()
+  const { user, error } = await authSession.setUser(session?.access_token)
+  expect(error).toBeNull()
+  expect(user?.user_metadata).toStrictEqual({ hello: 'world' })
 })
 
 test('signUp() the same user twice should throw an error', async () => {

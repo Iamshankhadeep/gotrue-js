@@ -258,7 +258,8 @@ export default class GoTrueClient {
   async setUser(access_token: string): Promise<{ user: User | null; error: Error | null }> {
     try {
       const { user, error } = await this.api.getUser(access_token)
-      if (error) throw error
+      if (error) return { user: null, error }
+
       if (!user) throw Error('Invalid user data.')
 
       const session = { ...this.currentSession, access_token, token_type: 'bearer', user }
