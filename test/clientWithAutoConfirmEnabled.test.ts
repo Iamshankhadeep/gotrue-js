@@ -79,7 +79,7 @@ test('setUser should update user in session', async () => {
     persistSession: false,
   })
   const session = authWithSession.session()
-  const { user, error } = await authSession.setUser(session?.access_token)
+  const { user, error } = await authSession.setUser(session!.access_token)
   expect(error).toBeNull()
   expect(user?.user_metadata).toStrictEqual({ hello: 'world' })
 })
