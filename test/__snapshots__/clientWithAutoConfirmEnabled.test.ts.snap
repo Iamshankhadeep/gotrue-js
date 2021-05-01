@@ -121,7 +121,7 @@ Object {
     "last_sign_in_at": Any<String>,
     "role": "",
     "updated_at": Any<String>,
-    "user_metadata": Object {},
+    "user_metadata": null,
   },
 }
 `;
